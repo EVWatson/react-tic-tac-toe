@@ -5,54 +5,31 @@ import Square from './Square';
 function renderSquare(props, i) {
     return ( 
     <Square 
+    key={i}    
     value={props.squares[i]}
     onClick = {()=> props.onClick(i)}
     />
     );
   };
 
-function renderRow(props, rowumber) {
-    const row = [];
-    const rowNumber = rowumber;
-    for(let i = rowNumber; i < rowumber*3+1; i++){
-
-        row.push(renderSquare(props, i))
-        return row;
-    }
-}
+  function renderRow(props, x) {
+      let row = [];
+      for(let square = 0; square < 3; square++) {
+        row.push(renderSquare(props, x+square))
+      }
+    return row;
+  }
 
 
-function Board(props) {
-
-    const grid = [[]];
-    
-    for(let column = 0; column < 3; column++) {
-        grid.push(
-            <div className="board-row">
-        {renderRow(props, column)}
-    </div>
-        )
-    }
-        return <div>{grid}</div>;
+    function Board(props) {
+    let grid = [<div>
+        <div>{renderRow(props, 0)}</div> 
+        <div>{renderRow(props, 3)}</div>
+        <div>{renderRow(props, 6)}</div>
+    </div>];
+return grid;
+       
     }
 
 
   export default Board;
-
-
-
-
-
-  {/* //   {renderSquare(props, 1)}
-        //   {renderSquare(props, 2)}
-        </div> */}
-        {/* // <div className="board-row">
-        //   {renderSquare(props, 3)}
-        //   {renderSquare(props, 4)}
-        //   {renderSquare(props, 5)}
-        // </div>
-        // <div className="board-row">
-        //   {renderSquare(props, 6)}
-        //   {renderSquare(props, 7)}
-        //   {renderSquare(props, 8)}
-        // </div> */}
