@@ -1,11 +1,9 @@
 import React from 'react';
 
-
 function Square(props) {
-    return (
-        
+    return (  
       <button 
-       className="square" 
+       className={props.winningSquare.includes(props.index) ? "winningSquares": "square"}
        onClick = {props.onClick}>
         {props.value}
       </button>
