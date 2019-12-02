@@ -26,7 +26,7 @@ function renderSquare(props, i, key) {
   function Board(props) {
     let grid = [<div></div>];
     for(let row = 0; row < 3; row++) {
-    grid.push(<div className="board-row">{renderRow(props, row*3)}</div>)
+    grid.push(<div className="board-row" key={row}>{renderRow(props, row*3)}</div>)
     }
 return grid;
   }

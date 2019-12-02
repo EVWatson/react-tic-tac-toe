@@ -13,6 +13,7 @@ class Game extends React.Component {
         }],
         stepNumber: 0,
         xIsNext: true,
+        isAscending: true,
       }
     }
 
@@ -42,13 +43,22 @@ class Game extends React.Component {
         xIsNext: (step % 2) === 0,
       });
     }
+
+    reverseOrder() {
+      const currentOrder = this.state.isAscending; 
+      this.setState({
+      isAscending: !currentOrder
+      })
+  }
       
     render() {
       const history = this.state.history;
       const current = history[this.state.stepNumber];
       const winner = calculateWinner(current.squares);
       const isDraw = calculateDraw(current.squares);
+      const isAscending = this.state.isAscending;
 
+      
       const moves = history.map((item, move) => {
         const desc = move ?
         'Go to move # ' + move + ' at location: ' +  item.location:
@@ -80,7 +90,11 @@ class Game extends React.Component {
           </div>
           <div className="game-info">
             <div>{status}</div>
-            <ol>{moves}</ol>
+            <ol>{!isAscending ? moves.reverse(): moves}</ol>
+            <div>
+             <button onClick={()=> this.reverseOrder()} className='toggle'>Reverse Order</button>
+             </div>
+            
           </div>
         </div>
       );

@@ -68,3 +68,10 @@ body {
     text-align: center;
     width: 34px;
   }
+
+  .toggle{
+    border: 1px solid #999;
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 10px;
+  }
